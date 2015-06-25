@@ -1,0 +1,11 @@
+node_modules
+public
+repos
+src/js/commits.js
+src/js/repos.js
+config/global.json
+
+.DS_Store
+*~
+.*.sw*
+

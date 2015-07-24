@@ -7,8 +7,14 @@ var HighlightedText = React.createClass({
     var text = this.props.text;
     text = text.replace(/\n/, '<br>');
 
-    var pattern = new RegExp('(' + this.props.query + ')', 'gi');
-    text = text.replace(pattern, '<mark>$1</mark>');
+    this.props.query.split(/\s/).forEach(function(q) {
+      try {
+        var pattern = new RegExp('(' + q + ')', 'gi');
+        text = text.replace(pattern, '<mark>$1</mark>');
+      } catch(e) {
+        console.error(e);
+      }
+    });
 
     return (
       <span dangerouslySetInnerHTML={{ __html: text }}></span>

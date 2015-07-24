@@ -19,7 +19,7 @@ var Main = React.createClass({
     };
   },
   onChange: function(query) {
-    var commits = idx.search(query).map(function(result) {
+    var commits = idx.search(query).slice(0, 50).map(function(result) {
       return repos['rails/rails'][result.ref];
     });
     this.setState({ 

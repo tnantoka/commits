@@ -20,6 +20,9 @@ task :clone do
 end
 
 task :index do
+  FileUtils.rm_rf('src/js/repos.js')
+  truncate = !ENV['TRUNCATE'].nil?
+
   repos = {}
   REPOS.each do |r|
     commits = {}
@@ -33,15 +36,16 @@ task :index do
       next if c.message =~ /\AMerge branch/
       next if c.message =~ /\ARevert/
       next if c.message =~ /\Agit-svn-id/
+      #next if c.message =~ /\[ci skip\]/
       commits[c.oid[0..9]] = {
         m: c.message.split(/\n/).first,
       }
-      break if i > 1000
+      break if truncate && i > 1000
     end
     repos["#{r[:owner]}/#{r[:repo]}"] = commits
   end
   json = JSON.pretty_generate(repos)
   File.write('src/js/repos.js', "module.exports = #{json};\n")
 
-  `node prebuild.js`
+  #`node prebuild.js`
 end

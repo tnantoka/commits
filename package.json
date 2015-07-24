@@ -1,7 +1,7 @@
 {
   "name": "commits",
-  "version": "0.2.3",
-  "main": "src/js/index.js",
+  "version": "0.0.1",
+  "main": "main.js",
   "description": "",
   "author": "",
   "engines": {

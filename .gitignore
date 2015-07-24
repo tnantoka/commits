@@ -4,6 +4,7 @@ repos
 src/js/commits.js
 src/js/repos.js
 config/global.json
+*-darwin-x64
 
 .DS_Store
 *~
